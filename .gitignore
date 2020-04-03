@@ -123,3 +123,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+ROPEmporium/write4/64/.gdb_history
+ROPEmporium/write4/32/.gdb_history
