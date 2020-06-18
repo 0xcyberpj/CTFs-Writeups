@@ -1,4 +1,4 @@
-# Traverxec
+# Openadmin
 Box IP **10.10.10.171**
 
 
@@ -56,7 +56,7 @@ joanna
 
 By searching for config files
 ```
-find . -type f -name "config*"
+$ find . -type f -name "config*"
 ./config/config.inc.php
 ./workspace_plugins/builtin/host_actions/config.inc.php
 ./config_dnld.php
@@ -69,7 +69,7 @@ and catting **config.inc.php** we find 2 interesting references to files
 
 we got some DB creds **ona_sys:n1nj4W4rri0R!**
 ```
-cat local/config/database_settings.inc.php
+$ cat local/config/database_settings.inc.php
 <?php
 
 $ona_contexts=array (
