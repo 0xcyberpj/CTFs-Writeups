@@ -9,16 +9,32 @@ $ nmap -sC -sV -T5 -v mango.htb
 ```
 
 ### Services
-<p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/master/HackTheBox/b2r/Mango/src/1.png" alt="1" />
-</p>
+```
+22/tcp  open  ssh      OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 a8:8f:d9:6f:a6:e4:ee:56:e3:ef:54:54:6d:56:0c:f5 (RSA)
+|   256 6a:1c:ba:89:1e:b0:57:2f:fe:63:e1:61:72:89:b4:cf (ECDSA)
+|_  256 90:70:fb:6f:38:ae:dc:3b:0b:31:68:64:b0:4e:7d:c9 (ED25519)
+80/tcp  open  http     Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: 403 Forbidden
+443/tcp open  ssl/http Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Mango | Search Base
+| ssl-cert: Subject: commonName=staging-order.mango.htb/organizationName=Mango Prv Ltd./stateOrProvinceName=None/countryName=IN
+| Not valid before: 2019-09-27T14:21:19
+|_Not valid after:  2020-09-26T14:21:19
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn:
+|_  http/1.1
+```
 
 Access to webserver on port 80 is forbidden, and connection of port 443 reveals an invalid certificate
 
 By investigating the certificate we find some interesting info
 
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/master/HackTheBox/b2r/Mango/src/2.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/master/HackTheBox/b2r/Mango/src/1.png" alt="1" />
 </p>
 
 We add this domain to our hosts file and by surfing to it we get a login page
@@ -26,18 +42,9 @@ We add this domain to our hosts file and by surfing to it we get a login page
 
 ### MongoDB
 
-We exploit MongoDB [regex](https://docs.mongodb.com/manual/reference/operator/query/regex/) to enumerate **users** and **password**.
+We exploit a [NonSQLi](https://github.com/lorenzoinvidia/HackTheBox-CheatSheets/wiki/Web#NonSQLi) in [MongoDB](https://docs.mongodb.com/manual/reference/operator/query/regex/) to enumerate **users** and **password**.
 
 If the regex matches, the server replies with status **302**, otherwise with **200**
-```
-POST / HTTP/1.1
-...
-username[$regex]=^admi.*&password[$ne]=1&login=login
-```
-
-<p align="center">
-  <img src="https://github.com/lorenzoinvidia/HTB-CheatSheets/blob/master/src/web/mongo.png" alt="HTB" />
-</p>
 
 We [speedup](https://github.com/an0nlk/Nosql-MongoDB-injection-username-password-enumeration/blob/master/nosqli-user-pass-enum.py) the credential grabbing by
 
@@ -75,7 +82,7 @@ fw.close();' | jjs
 - directly print the root flag
 
 <p align="center">
-  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/master/HackTheBox/b2r/Mango/src/3.png" alt="1" />
+  <img src="https://github.com/lorenzoinvidia/CTFs-Writeups/blob/master/HackTheBox/b2r/Mango/src/2.png" alt="1" />
 </p>
 
 
