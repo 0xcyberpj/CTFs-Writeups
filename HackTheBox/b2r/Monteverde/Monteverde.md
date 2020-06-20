@@ -46,7 +46,7 @@ roleary
 smorgan
 ```
 
-By spraying *username:password* on SMB we find **SABatchJobs:SABatchJobs** as valid creds
+By spraying *username:password* on [SMB](https://github.com/lorenzoinvidia/HackTheBox-CheatSheets/wiki/Windows#SMB) we find **SABatchJobs:SABatchJobs** as valid creds
 
 Searching into the **users$** share with [smbmap](https://github.com/lorenzoinvidia/HackTheBox-CheatSheets/wiki/Windows#smbmap) we finally hit **.\users$\mhope\azure.xml** containing a password
 ```xml
