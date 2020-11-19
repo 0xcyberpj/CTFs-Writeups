@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 '''
-    ropme
     @Author: Lorenzo Invidia
     @Requirements: pwntools
 '''
